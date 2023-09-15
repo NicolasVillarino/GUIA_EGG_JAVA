@@ -28,51 +28,30 @@ public class Main {
         int num, numintentos;
 
         numintentos = 0;
+        num = 0;
 
         System.out.println(numeroAleatorio);
 
-        try {
-
-            System.out.println("Ingrese un numero, a ver si tiene suerte. El mismo es entre 1 y 500");
-            num = leer.nextInt();
-
-        } catch (InputMismatchException e) {
-            System.out.println("No ingresaste un numero, intenta de nuevo " + e.getMessage() );
-            leer.nextLine();
-            num = leer.nextInt();
-            
-        }
-
-        while (num != numeroAleatorio) {
-
-            numintentos++;
-
-            if (num > numeroAleatorio) {
-                System.out.println("El numero a adivinar es menor.");
-            } else if (num < numeroAleatorio) {
-                System.out.println("El numero a adivinar es mayor.");
-            }
-
+        do {
             try {
-
-                System.out.println("Prueba de nuevo, ingresa un numero");
+                System.out.println("Ingrese un numero entre 1 y 500: ");
                 num = leer.nextInt();
                 numintentos++;
 
+                if (num > numeroAleatorio) {
+                    System.out.println("El numero ingresado es mayor al numero aleatorio");
+                } else if (num < numeroAleatorio) {
+                    System.out.println("El numero ingresado es menor al numero aleatorio");
+                } else {
+                    System.out.println("Felicitaciones! Adivinaste el numero! ");
+                    System.out.println("Numero de intentos: " + numintentos);
+                }
             } catch (InputMismatchException e) {
-                System.out.println("No ingresaste un numero, intenta de nuevo " + e.getMessage() );
-                leer.nextLine();
-                num = leer.nextInt();
+                System.out.println("El valor ingresado no es un numero. " +e);
                 numintentos++;
+                leer.next();
             }
-
-        }
-
-        System.out.println("Adivinaste el numero, felicitaciones!!");
-        numintentos++;
-
-        System.out.println("La cantidad de intentos fue de: " + numintentos);
+        } while (num != numeroAleatorio);
 
     }
-
 }
